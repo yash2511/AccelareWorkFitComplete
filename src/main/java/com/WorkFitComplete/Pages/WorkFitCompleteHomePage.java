@@ -4,19 +4,11 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.asserts.SoftAssert;
@@ -27,7 +19,7 @@ import com.WorkFitComplete.Utilities.ExcelUtils;
 
 public class WorkFitCompleteHomePage {
 	
-	@FindBy(xpath ="//*[@id='layoutsTable']/tbody/tr[1]/td/div/div/a/p/span")
+	@FindBy(xpath ="//*[@id='layoutsTable']/tbody/tr[1]/td/div/div/a/p/spa")
 	private WebElement WorkFitCompleteLink;
 	
 	@FindBy(xpath="//*[@title='WorkFit Menu']")

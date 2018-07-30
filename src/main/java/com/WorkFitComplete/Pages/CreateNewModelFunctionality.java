@@ -1,25 +1,17 @@
 package com.WorkFitComplete.Pages;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
 
-import com.WorkFitCompelte.core.Testcapture;
 import com.WorkFitCompelte.core.Testexception;
 import com.WorkFitCompelte.core.Testfactory;
 import com.WorkFitComplete.Utilities.ExcelUtils;
-import com.cucumber.listener.Reporter;
 
 public class CreateNewModelFunctionality {
 	
@@ -56,6 +48,9 @@ public class CreateNewModelFunctionality {
 	@FindBy(xpath="//*[contains(text(),'Get Started')]")
 	private WebElement getStartedButton;
 	
+	@FindBy(xpath="//td[@class='wf-row-content']")
+	private List<WebElement> modelDropdownlist;
+	
 	public CreateNewModelFunctionality()
 	{
 		PageFactory.initElements(Testfactory.driver, this);
@@ -65,7 +60,6 @@ public class CreateNewModelFunctionality {
 	{
 		try {
 			Testfactory.clickAction(ModelDropdown);
-			
 		} catch (Testexception e) {
 			
 			e.printStackTrace();
@@ -85,7 +79,6 @@ public class CreateNewModelFunctionality {
 		try {
 			
 			Testfactory.editTextBox(TitleText, ExcelUtils.getSheetData(1, 0));
-			
 			Testfactory.Actions(OwnerText, "tes");
 			Testfactory.driver.findElement(By.xpath("//div[text()='"+ExcelUtils.getSheetData(1, 1)+"']")).click();
 			Testfactory.editTextBox(Description, ExcelUtils.getSheetData(1, 2));
@@ -94,8 +87,11 @@ public class CreateNewModelFunctionality {
 			Testfactory.editTextBox(link, ExcelUtils.getSheetData(1, 5));
 			Testfactory.editTextBox(date, ExcelUtils.getSheetData(1, 3));
 			Testfactory.clickAction(date);
-			Testfactory.clickAction(saveButton);
-			Testcapture.capturescreenshot(Testfactory.driver, "New Model Functionality");		
+			Testfactory.clickAction(saveButton);			
+			Thread.sleep(10000);
+			Testfactory.driver.navigate().back();
+			Testfactory.clickAction(ModelDropdown);
+			//Testcapture.capturescreenshot(Testfactory.driver, "New Model Functionality");		
 		} catch (Testexception e) {
 			
 			e.printStackTrace();
@@ -104,8 +100,9 @@ public class CreateNewModelFunctionality {
 	
 	public void IsModelCreated()
 	{
-		boolean getstarted = getStartedButton.isDisplayed();
-		SoftAssert verify= new SoftAssert();
-		verify.assertTrue(getstarted);
+		boolean b =true;
+		boolean getstarted = ExcelUtils.getSheetData(1, 0).equals(Testfactory.modeldropdownlist(modelDropdownlist, ExcelUtils.getSheetData(1, 0)));
+		Assert.assertTrue(getstarted);
+	
 	}
 }

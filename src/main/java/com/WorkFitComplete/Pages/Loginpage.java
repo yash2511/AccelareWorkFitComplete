@@ -4,15 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
 
 import com.WorkFitCompelte.core.Testcapture;
 import com.WorkFitCompelte.core.Testexception;
 import com.WorkFitCompelte.core.Testfactory;
-import com.WorkFitComplete.Utilities.TestConfig;
-import com.cucumber.listener.Reporter;
 
 	public class Loginpage {
+		
 		
 		@FindBy(xpath ="//*[@id='otherTile']/div/div[2]")
 		private WebElement UseAnotherAccount;
@@ -47,34 +45,31 @@ import com.cucumber.listener.Reporter;
 				
 		public void clickLoginbutton(String userName, String passWord)
 		{
-			try{
-				
+			try{				
 				Testfactory.editTextBox(SignIn, userName);
-				//Reporter.addStepLog("Enetr the Username");
 				Testfactory.clickAction(NextButton);
-				//Reporter.addStepLog("Click on the Next Button");
 				Testfactory.clickAction(SelectAccount);
-				//Reporter.addStepLog("Select the account");
 				Testfactory.clickAction(YesButton);
-				//Reporter.addStepLog("Click on Yes Button");
 				Testfactory.editTextBox(Password, passWord);
-				//Reporter.addStepLog("Enter the Password");
 				Testfactory.clickAction(SignInButton);
-				//Reporter.addStepLog("Click on SignIn Button");
 				Testfactory.clickAction(YesButton);
-				//Reporter.addStepLog("Click on Yes button");
 				Testcapture.capturescreenshot(Testfactory.driver, "Login Functionality");
 			}catch(Testexception e){
-				
+				e.printStackTrace();
 			}
 			
 		}
-		public void IsAppTestingPageOpen(String pageName) throws Testexception
+		public void IsAppTestingPageOpen(String pageName)
 		{
 			
 			String text = AppTesting.getText();
+			try{
 			Assert.assertEquals(pageName, text);
-			Reporter.addStepLog("Verify the use is able to login");
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
 		}
 	}
 

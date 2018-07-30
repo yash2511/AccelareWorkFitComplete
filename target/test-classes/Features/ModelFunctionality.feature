@@ -1,6 +1,7 @@
+
+
 Feature: Capability(Model) module feature
-
-
+@smoke
 Scenario: User is Logged In
 	Given Accelare url is launched
 	When User Enters valid username "yashodeep.patil@nitorinfotech.com" and password "Workfit2511#"
@@ -26,3 +27,4 @@ Scenario: Export the model
 	When user click on Export button
 	Then user is able to export the model
 	And Click on verify app testing page
+	And Close the browser

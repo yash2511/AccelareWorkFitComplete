@@ -6,7 +6,6 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.asserts.SoftAssert;
 
 import com.WorkFitCompelte.core.Testcapture;
 import com.WorkFitCompelte.core.Testexception;
@@ -51,6 +50,7 @@ public class ModelImportFunctinalty {
 			 Testfactory.driver.findElement(By.xpath("//h3[text()='"+ExcelUtils.getSheetData(1, 0)+"']")).click();
 			 Thread.sleep(20000);
 			 Testfactory.clickAction(DesignButton);
+			 Thread.sleep(10000);
 		 } catch (Testexception e) {
 			
 			e.printStackTrace();
@@ -67,7 +67,7 @@ public class ModelImportFunctinalty {
 				Testfactory.clickAction(ModelDropdown);
 				Testfactory.driver.findElement(By.xpath("//h3[text()='"+ExcelUtils.getSheetData(1, 0)+"']")).click();
 				Thread.sleep(20000);
-				 Testfactory.clickAction(DesignButton);
+				Testfactory.clickAction(DesignButton);
 				Testfactory.editTextBox(ChooseFile, "C:\\Users\\yashodeep.patil\\Downloads\\Model Export (11).xlsx");
 				Testfactory.clickAction(ImportButton);
 				Testcapture.capturescreenshot(Testfactory.driver, "ImportModelFunctionality");

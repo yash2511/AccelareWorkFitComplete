@@ -1,18 +1,13 @@
 package com.WorkFitCompelte.core;
 
 import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,7 +18,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.WorkFitComplete.Utilities.ExcelUtils;
 import com.WorkFitComplete.Utilities.TestConfig;
 
 public abstract class Testfactory {
@@ -228,6 +222,44 @@ try{
         li.remove(0);
         System.out.println(li);
         return li;
+    }     
+	
+	public static List<String> modeldropdownlist(List<WebElement> element)
+    {
+    	List<String> li = new ArrayList<>();
+        for(WebElement el : element)
+        {
+        	String str = el.getText();
+        	if(str.matches("^[0-9].*$"))
+        	{
+        	String newString = str.replaceAll("[-+]?([0-9]*\\.[0-9]+)","");
+        	String space = newString.replaceAll("\\s+","");
+        	li.add(space);
+        	
+        	}else
+        	{
+        		li.add(str);
+        	
+        	}        	
+        }
+        li.remove(0);
+        System.out.println(li);
+        return li;
+    }     
+	
+	public static String modeldropdownlist(List<WebElement> element, String modelName)
+    {
+    	List<String> li = new ArrayList<>();
+        for(WebElement el : element)
+        {
+        	String str = el.getText();
+        	if(str.equals(modelName))
+        	{
+        	return str;
+        	
+        	}	
+        }
+		return modelName;
     }     
   }
 

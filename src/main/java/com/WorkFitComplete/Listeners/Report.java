@@ -14,12 +14,14 @@ public class Report
 	ExtentReports report;
 	ExtentTest logger;
 	Exception exe;
-		
-	public void startReport() {
 	
-		report=new ExtentReports("C:\\Users\\yashodeep.patil\\workspace\\WorkFitComplete\\ExtentsReports\\Automation.html", false);
-		report.loadConfig(new File("C:\\Users\\yashodeep.patil\\workspace\\WorkFitComplete\\src\\test\\resources\\ExtentReport-config.xml"));
-		
+	
+	
+	public void startReport() {
+			 report=new ExtentReports("D:\\AccelareWorkFitComplete\\ExtentsReports\\Automation.html", false);
+			 
+			 report.loadConfig(new File("C:\\Users\\yashodeep.patil\\workspace\\WorkFitComplete\\src\\test\\resources\\ExtentReport-config.xml"));
+			 
 	}
 	public void startTest(String testName) {
 		
@@ -39,25 +41,29 @@ public class Report
 
 		
 	}
+	public void exceptionMessage(String exceptionMessage) {
+		
+		logger.log(LogStatus.FAIL, exceptionMessage);
+
+		
+	}
 	
+	public void attachScreenshot(String stepName, String screeShotPath){
+	 
+		logger.log(LogStatus.FAIL, stepName, screeShotPath);
+	}
 	public void stepSkip(String stepName) {
 		
 		logger.log(LogStatus.SKIP, stepName);
 		
-		}
-			
-	
+		}	
 	
 	public void endTest(String stepName) {
 		
 		report.endTest(logger);
 		report.flush();
+		report.close();
 		
 	}
 	
-	/*public void endReport() {
-		
-		report.flush();
-		
-	}*/
 }
