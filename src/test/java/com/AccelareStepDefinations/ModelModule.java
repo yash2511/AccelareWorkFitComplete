@@ -31,7 +31,6 @@ public class ModelModule {
     public void afterScenario(Scenario scenario){
         System.out.println("This will run after the Scenario");
         reporter.endTest(scenario.getName());
-        
 	}
 	
 	@Given("^Accelare url is launched$")
