@@ -11,23 +11,22 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class Testcapture {
-public static void capturescreenshot(WebDriver driver, String screenshotname){
-		
+	public static void capturescreenshot(WebDriver driver, String screenshotname) {
+
 		String imagelocation = System.getProperty("user.dir") + "/WorkFitComplete Screenshots/";
-		
-		File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		
-		Calendar calendare= Calendar.getInstance();
+
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+		Calendar calendare = Calendar.getInstance();
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
-		
-		String actualimage = imagelocation + screenshotname + "_" +formater.format(calendare.getTime()) +".png";
-		
+
+		String actualimage = imagelocation + screenshotname + "_" + formater.format(calendare.getTime()) + ".png";
+
 		try {
 			FileUtils.copyFile(src, new File(actualimage));
-			
-		} catch (IOException e)
-		{
-			
+
+		} catch (IOException e) {
+
 			e.printStackTrace();
 		}
 	}
